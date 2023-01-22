@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  service:
+    image: home-assignment-service
+    container_name: home-assignment-service
+    build:
+      context: ./services/service
+      dockerfile: ./Dockerfile
+    command: sh -c "yarn test"
+    volumes:
+      - ./services/service/src:/app/src
+    depends_on:
+      - mongodb
+  mongodb:
+    image: mongo:4.4.3
+    container_name: home-assignment-db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: pass
+    ports:
+      - 27017:27017
+    volumes:
+      - ./dump:/dbdump

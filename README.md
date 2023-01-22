@@ -176,4 +176,13 @@ You can run the API tests by running:
 make backend-test-api
 ```
 
-This will raise the database and the API container to perform the test. The platform will shut down itself after completing the tests.
+This will raise the database and the API containers to perform the test. The platform will shut down itself after completing the tests.
+
+## Testing the service
+
+You can run the service tests by running:
+```
+make backend-test-service
+```
+
+This will raise the database and the service containers to perform the test. The platform will shut down itself after completing the tests.

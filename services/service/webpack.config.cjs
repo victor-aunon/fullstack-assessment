@@ -40,6 +40,9 @@ const config = {
       '.js',
       '.json'
     ],
+    alias: {
+      '@app': path.resolve(__dirname, 'src'),
+    }
   },
   plugins: [
     // new webpack.ProgressPlugin(),

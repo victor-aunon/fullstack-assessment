@@ -16,6 +16,9 @@ backend-up-slim:
 backend-test-api:
 	docker-compose -f docker-compose.apitest.yml up --abort-on-container-exit
 
+backend-test-service:
+	docker-compose -f docker-compose.servicetest.yml up --abort-on-container-exit
+
 backend-down:
 	docker-compose down
 
@@ -32,4 +35,4 @@ backend-test: backend-dump
 	echo ""
 	make backend-load
 
-$PHONY: backend-build backend-build-slim backend-up backend-up-slim backend-test-api backend-down backend-dump backend-load backend-dbshell backend-test
+$PHONY: backend-build backend-build-slim backend-up backend-up-slim backend-test-api backend-test-service backend-down backend-dump backend-load backend-dbshell backend-test

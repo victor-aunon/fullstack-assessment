@@ -10,10 +10,13 @@
         "target": "es6",
         "allowJs": true,
         "types": [
-            "node"
+            "node",
+            "@types/jest"
         ],
         "baseUrl": "./",
-        "paths": {}
+        "paths": {
+            "@app/*": ["./src/*"]
+        }
     },
     "include": [
         "./src/**/*"

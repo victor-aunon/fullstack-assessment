@@ -1,2 +1,10 @@
 // IMPLEMENT YOUR SOLUTION HERE!!
-export const retrieveData = () => "Fetching...".concat("DATA!");
+import { UpdateSubscribedCurrencies } from "@app/currency/application";
+
+export async function retrieveData() {
+  const updateSubcribedCurrencies = new UpdateSubscribedCurrencies({
+    toCurrencyCode: "EUR",
+  });
+  
+  return await updateSubcribedCurrencies.execute()
+};
