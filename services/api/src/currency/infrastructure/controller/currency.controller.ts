@@ -13,7 +13,9 @@ export class CurrencyController {
 
   async subscribe(req: Request, res: Response) {
     try {
-      const currency = await this.subscribeCurrency.execute(req.body);
+      const currency = await this.subscribeCurrency.execute(
+        req.body.code as string
+      );
       res.status(200).json({ data: currency });
     } catch (err) {
       let status = 500;
