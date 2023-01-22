@@ -1,0 +1,1 @@
+process.env.MONGODB_URI_TEST = "mongodb://root:pass@home-assignment-db:27017/testdbtesting?authSource=admin"

@@ -168,4 +168,12 @@ cases that we think you could face:
 # fullstack-assignment
 Full-Stack position skill assessment home assignment.
 
-**[Place here any extra documentation or comments you want us to have.]**
+
+## Testing the API
+
+You can run the API tests by running:
+```
+make backend-test-api
+```
+
+This will raise the database and the API container to perform the test. The platform will shut down itself after completing the tests.

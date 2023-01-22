@@ -10,7 +10,9 @@
         "target": "es6",
         "allowJs": true,
         "types": [
-            "node"
+            "node",
+            "@types/jest",
+            "@types/supertest"
         ],
         "baseUrl": "./",
         "paths": {

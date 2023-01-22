@@ -1,12 +1,20 @@
 import { Currency, ICurrencyRepository } from "@app/currency/domain";
 import { Nullable } from "@app/utils";
 import CurrencySchema from "../schema/mongoose-currency.schema";
+
 export class MongooseCurrencyRepository implements ICurrencyRepository {
   private toDomain(currencyDB) {
     return Currency.fromPrimitives({
       id: currencyDB._id,
       code: currencyDB.code,
       hasSubscription: currencyDB.hasSubscription,
+      toCurrencyCode: currencyDB.toCurrencyCode,
+      ask: currencyDB.ask,
+      bid: currencyDB.bid,
+      spread: currencyDB.spread,
+      spreadPipes: currencyDB.spreadPipes,
+      exchangeRate: currencyDB.exchangeRate,
+      dailyHistory: currencyDB.dailyHistory,
     });
   }
 
@@ -15,6 +23,12 @@ export class MongooseCurrencyRepository implements ICurrencyRepository {
       _id: currency.id,
       code: currency.code,
       hasSubscription: currency.hasSubscription,
+      ask: currency.ask,
+      bid: currency.bid,
+      spread: currency.spread,
+      spreadPipes: currency.spreadPipes,
+      exchangeRate: currency.exchangeRate,
+      dailyHistory: currency.dailyHistory,
     };
   }
 
@@ -28,7 +42,7 @@ export class MongooseCurrencyRepository implements ICurrencyRepository {
       hasSubscription: true,
     });
 
-    return subscribedCurrencies.map((currency) => this.toDomain(currency));
+    return subscribedCurrencies.map(currency => this.toDomain(currency));
   }
 
   async findByCode(code: string): Promise<Nullable<Currency>> {
@@ -36,12 +50,12 @@ export class MongooseCurrencyRepository implements ICurrencyRepository {
     return currency === null ? null : this.toDomain(currency);
   }
 
-  async unsubscribe(currency: Currency): Promise<void> {
+  async changeSubscription(currency: Currency): Promise<void> {
     const document = this.fromDomain(currency);
     await CurrencySchema.updateOne(
       { _id: currency.id },
       { $set: document },
-      { upsert: true }
+      { upsert: false }
     );
   }
 }

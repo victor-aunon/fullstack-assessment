@@ -18,7 +18,14 @@ export class SubscribeCurrency {
       return CurrencyAlreadySubscribedError.withCode(currency.code);
     }
 
-    const newCurrency = Currency.create({ code: currencyReq.code });
+    // Change hasSubscription to false instead of creating another document
+    if (currency && !currency.hasSubscription) {
+      currency.subscribe();
+      await this.currencyRepository.changeSubscription(currency);
+      return currency;
+    }
+
+    const newCurrency = await Currency.create({ code: currencyReq.code });
     await this.currencyRepository.subscribe(newCurrency as Currency);
     return newCurrency;
   }
