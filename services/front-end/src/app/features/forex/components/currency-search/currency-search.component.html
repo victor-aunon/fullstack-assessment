@@ -1,0 +1,22 @@
+<div class="currenciesHeader" *transloco="let t; read: 'forex.forexPage'">
+  <h1 class="headerTitle">{{ t("header.title") }}</h1>
+  <form
+    class=""
+    (ngSubmit)="onSubmit()"
+    [formGroup]="searchCurrencyForm"
+  >
+    <div class="searchInput">
+      <label for="searchCurrencyCode">{{ t("header.label") }}</label>
+      <input
+        id="searchCurrencyCode"
+        name="searchCurrencyCode"
+        type="text"
+        formControlName="searchCurrencyCode"
+        placeholder="USD, GBP, JPY..."
+      />
+    </div>
+    <button class="subscribeButton" type="submit">
+      <mat-icon>bookmark_add</mat-icon>{{ t("header.subscribe") }}
+    </button>
+  </form>
+</div>

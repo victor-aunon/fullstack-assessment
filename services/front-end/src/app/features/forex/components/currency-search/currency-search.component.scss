@@ -1,0 +1,28 @@
+@use 'sizes';
+@use 'theme';
+
+.currenciesHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  @include theme.font-body();
+
+  @include sizes.tablet {
+    flex-direction: row;
+  }
+
+  .headerTitle {
+    @include theme.font-h1;
+    font-weight: 600;
+    font-size: 3rem;
+    margin: 0;
+  }
+
+  .searchBox{
+    width: 400px;
+    
+   
+  }
+}

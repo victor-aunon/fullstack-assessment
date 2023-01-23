@@ -1,1 +1,9 @@
-{}
+{
+  "forexPage": {
+    "header": {
+      "title": "Divisas",
+      "label": "Busca una divisa",
+      "subscribe": "Suscribir"
+    }
+  }
+}

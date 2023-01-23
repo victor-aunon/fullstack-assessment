@@ -1,1 +1,9 @@
-{}
+{
+  "forexPage": {
+    "header": {
+      "title": "Currencies",
+      "label": "Search for a currency",
+      "subscribe": "Subscribe"
+    }
+  }
+}
