@@ -14,10 +14,10 @@ export class UpdateSubscribedCurrencies {
   private fxFetcherRepository: IFxFetcherRepository;
   constructor({
     currencyRepository = new MongooseCurrencyRepository(),
-    toCurrencyCode = "EUR",
+    fxFetcherRepository = new FxFetcherRepository("EUR")
   }) {
-    this.currencyRepository = currencyRepository;
-    this.fxFetcherRepository = new FxFetcherRepository(toCurrencyCode);
+    this.currencyRepository = currencyRepository
+    this.fxFetcherRepository = fxFetcherRepository;
   }
 
   async execute(): Promise<string> {
