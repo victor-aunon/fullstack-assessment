@@ -2,7 +2,7 @@
 import { UpdateSubscribedCurrencies } from "@app/currency/application";
 
 export async function retrieveData() {
-  const updateSubcribedCurrencies = new UpdateSubscribedCurrencies({});
+  const updateSubscribedCurrencies = new UpdateSubscribedCurrencies({});
 
-  return await updateSubcribedCurrencies.execute();
+  return await updateSubscribedCurrencies.execute();
 }
