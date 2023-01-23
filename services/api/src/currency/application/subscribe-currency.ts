@@ -2,13 +2,22 @@ import {
   Currency,
   CurrencyAlreadySubscribedError,
   ICurrencyRepository,
+  IFxFetcherRepository,
 } from "../domain";
-import { MongooseCurrencyRepository } from "../infrastructure";
+import {
+  MongooseCurrencyRepository,
+  FxFetcherRepository,
+} from "../infrastructure";
 
 export class SubscribeCurrency {
   private currencyRepository: ICurrencyRepository;
-  constructor({ currencyRepository = new MongooseCurrencyRepository() }) {
+  private fxFetcherRepository: IFxFetcherRepository;
+  constructor({
+    currencyRepository = new MongooseCurrencyRepository(),
+    fxFetcherRepository = new FxFetcherRepository("EUR"),
+  }) {
     this.currencyRepository = currencyRepository;
+    this.fxFetcherRepository = fxFetcherRepository;
   }
 
   async execute(code: string) {
@@ -26,7 +35,8 @@ export class SubscribeCurrency {
     }
 
     const newCurrency = await Currency.create({ code });
-    await this.currencyRepository.subscribe(newCurrency as Currency);
-    return newCurrency;
+    const fxData = await this.fxFetcherRepository.getCurrencyExchangeData(code)
+    await this.currencyRepository.subscribe(newCurrency as Currency, fxData);
+    return await this.currencyRepository.findByCode(code);
   }
 }

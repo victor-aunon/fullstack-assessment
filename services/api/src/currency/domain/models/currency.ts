@@ -42,22 +42,17 @@ export class Currency {
       return IncorrectCurrencyError.withCode(code);
     }
 
-    const fxFetcherRepository = new FxFetcherRepository(toCode);
-
-    const { ask, bid, spread, spreadPipes, exchangeRate, dailyHistory } =
-      await fxFetcherRepository.getCurrencyExchangeData(code);
-
     return new Currency({
       id,
       code,
       hasSubscription,
       toCurrencyCode: toCode,
-      ask,
-      bid,
-      spread,
-      spreadPipes,
-      exchangeRate,
-      dailyHistory,
+      ask: 0.0,
+      bid: 0.0,
+      spread: 0.0,
+      spreadPipes: 0.0,
+      exchangeRate: 0.0,
+      dailyHistory: [],
     });
   }
 

@@ -1,4 +1,5 @@
 import { Currency, ICurrencyRepository } from "@app/currency/domain";
+import { CurrencyExchangeData } from "@app/currency/domain/interfaces";
 import { Nullable } from "@app/utils";
 import CurrencySchema from "../schema/mongoose-currency.schema";
 
@@ -32,8 +33,11 @@ export class MongooseCurrencyRepository implements ICurrencyRepository {
     };
   }
 
-  async subscribe(currency: Currency): Promise<void> {
-    const mongooseCurrency = this.fromDomain(currency);
+  async subscribe(
+    currency: Currency,
+    exchangeData: CurrencyExchangeData
+  ): Promise<void> {
+    const mongooseCurrency = {...this.fromDomain(currency), ...exchangeData};
     await CurrencySchema.create(mongooseCurrency);
   }
 

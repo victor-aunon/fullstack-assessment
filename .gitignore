@@ -105,3 +105,6 @@ dist
 
 # Db dumps
 dump
+
+# VSCode
+*.code-workspace
