@@ -14,22 +14,24 @@ export class CurrencyService {
     headers: new HttpHeaders({ "Content-Type": "application/json" }),
   };
 
-  constructor(
-    private http: HttpClient,
-    private store: Store<AppState>,
-  ) {}
+  constructor(private http: HttpClient, private store: Store<AppState>) {}
+
+  private cleanMessage() {
+    setTimeout(() => {
+      this.store.dispatch(resetMessage());
+    }, 3000);
+  }
 
   getCurrencies() {
     const currenciesUrl = `${environment.apiUrl}/currencies`;
     this.http.get<{ data: Currency[] }>(currenciesUrl).subscribe({
       next: response => {
         this.store.dispatch(resetMessage());
-        this.store.dispatch(
-          setCurrencies({ currencies: response.data })
-        );
+        this.store.dispatch(setCurrencies({ currencies: response.data }));
       },
       error: error => {
-        this.store.dispatch(setMessage({message: error.error.data}));
+        this.store.dispatch(setMessage({ message: error.error.data }));
+        this.cleanMessage();
         console.error(error);
       },
     });
@@ -46,10 +48,11 @@ export class CurrencyService {
       .subscribe({
         next: () => {
           this.store.dispatch(resetMessage());
-          this.getCurrencies()
+          this.getCurrencies();
         },
         error: error => {
-          this.store.dispatch(setMessage({message: error.error.data}));
+          this.store.dispatch(setMessage({ message: error.error.data }));
+          this.cleanMessage();
           console.error(error);
         },
       });
@@ -57,17 +60,16 @@ export class CurrencyService {
 
   unSubscribeCurrency(currencyCode: string) {
     const unSubscribeUrl = `${environment.apiUrl}/currency/${currencyCode}`;
-    this.http
-      .put<{ data: Currency }>(unSubscribeUrl, {})
-      .subscribe({
-        next: () => {
-          this.store.dispatch(resetMessage());
-          this.getCurrencies()
-        },
-        error: error => {
-          this.store.dispatch(setMessage({message: error.error.data}));
-          console.error(error);
-        },
-      });
+    this.http.put<{ data: Currency }>(unSubscribeUrl, {}).subscribe({
+      next: () => {
+        this.store.dispatch(resetMessage());
+        this.getCurrencies();
+      },
+      error: error => {
+        this.store.dispatch(setMessage({ message: error.error.data }));
+        this.cleanMessage();
+        console.error(error);
+      },
+    });
   }
 }
