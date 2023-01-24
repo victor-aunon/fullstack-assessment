@@ -13,7 +13,9 @@
       "open": "Open",
       "close": "Close",
       "unsubscribe": "Stop following",
-      "following": "following"
+      "following": "following",
+      "bid": "Bid",
+      "ask": "Ask"
     }
   }
 }

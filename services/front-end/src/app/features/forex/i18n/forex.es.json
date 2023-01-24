@@ -13,7 +13,9 @@
       "open": "Apertura",
       "close": "Cierre",
       "unsubscribe": "Dejar de seguir",
-      "following": "Siguiendo"
+      "following": "Siguiendo",
+      "bid": "Compra",
+      "ask": "Venta"
     }
   }
 }

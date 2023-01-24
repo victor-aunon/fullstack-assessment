@@ -1,0 +1,62 @@
+<mat-card *transloco="let t; read: 'forex.forexPage'" class="currencyCard">
+  <mat-card-title
+    >{{ currency._code }}-{{ currency._toCurrencyCode }}
+  </mat-card-title>
+  <mat-card-subtitle>{{ t("currency.following") }}</mat-card-subtitle>
+  <mat-card-content class="currencyContent">
+    <div class="currencyInfoFirst">
+      <div class="currencyField">
+        <span>{{ currency._exchangeRate | number : "1.0-5" }}</span>
+        <span>{{ t("currency.exchange") }}</span>
+      </div>
+      <div class="currencyBidField">
+        <span>{{ currency._bid | number : "1.0-5" }}</span>
+        <span>{{ t("currency.bid") }}</span>
+      </div>
+      <div class="currencyAskField">
+        <span>{{ currency._ask | number : "1.0-5" }}</span>
+        <span>{{ t("currency.ask") }}</span>
+      </div>
+      <div class="currencyField" *ngIf="currency._dailyHistory.length > 0">
+        <span>{{ currency._dailyHistory[0].high | number : "1.0-5" }}</span>
+        <span>{{ t("currency.high") }}</span>
+      </div>
+      <div class="currencyField" *ngIf="currency._dailyHistory.length > 0">
+        <span>{{ currency._dailyHistory[0].low | number : "1.0-5" }}</span>
+        <span>{{ t("currency.low") }}</span>
+      </div>
+    </div>
+    <div class="currencyInfo">
+      <div class="currencyHistoryInfo">
+        <p class="currencyDate">{{ currency._dailyHistory[1].date }}</p>
+        <div class="currencyInfo">
+          <div
+            [ngClass]="
+              getHighDifference() >= 0
+                ? 'currencyPositiveField'
+                : 'currencyNegativeField'
+            "
+          >
+            <span>{{ currency._dailyHistory[1].high | number : "1.0-5" }}</span>
+            <span>{{ getHighDifference() | number : "1.0-1" }} %</span>
+            <span>{{ t("currency.high") }}</span>
+          </div>
+          <div
+            [ngClass]="
+              getLowDifference() >= 0
+                ? 'currencyPositiveField'
+                : 'currencyNegativeField'
+            "
+          >
+            <span>{{ currency._dailyHistory[1].low | number : "1.0-5" }}</span>
+            <span>{{ getLowDifference() | number : "1.0-1" }} %</span>
+            <span>{{ t("currency.low") }}</span>
+          </div>
+        </div>
+      </div>
+      <button mat-raised-button color="warn" (click)="unSubscribe()">
+        <mat-icon>bookmark_remove</mat-icon>&nbsp;{{ t("currency.unsubscribe") }}
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

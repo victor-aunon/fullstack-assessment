@@ -4,13 +4,14 @@ import { RouterModule } from "@angular/router";
 import { TranslocoModule, TRANSLOCO_SCOPE } from "@ngneat/transloco";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
-import { MatCardModule } from "@angular/material/card"
+import { MatCardModule } from "@angular/material/card";
+import { MatButtonModule } from "@angular/material/button";
 import { ForexLandingPageComponent } from "./pages/forex-landing-page/forex-landing-page.component";
 import { routes } from "./forex.routing";
 import { CurrencySearchComponent } from "./components/currency-search/currency-search.component";
 import { MessageComponent } from "./components/message/message.component";
-import { CurrencyListComponent } from './currency-list/currency-list.component';
-
+import { CurrencyListComponent } from "./currency-list/currency-list.component";
+import { CurrencyCardComponent } from "./currency-card/currency-card.component";
 
 export const loader = ["en", "es"].reduce((acc, lang) => {
   acc[lang] = () => import(`./i18n/forex.${lang}.json`);
@@ -23,6 +24,7 @@ export const loader = ["en", "es"].reduce((acc, lang) => {
     CurrencySearchComponent,
     MessageComponent,
     CurrencyListComponent,
+    CurrencyCardComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ export const loader = ["en", "es"].reduce((acc, lang) => {
     TranslocoModule,
     MatCardModule,
     MatIconModule,
+    MatButtonModule
   ],
   providers: [
     {
