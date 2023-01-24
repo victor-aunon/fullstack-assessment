@@ -4,6 +4,16 @@
       "title": "Currencies",
       "label": "Search for a currency",
       "subscribe": "Subscribe"
+    },
+    "noCurrencies": "You have not subscribed to any currency yet",
+    "currency": {
+      "exchange": "Rate",
+      "high": "High",
+      "low": "Low",
+      "open": "Open",
+      "close": "Close",
+      "unsubscribe": "Stop following",
+      "following": "following"
     }
   }
 }

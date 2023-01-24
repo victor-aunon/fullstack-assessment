@@ -9,9 +9,9 @@ import { AppState, selectMessage } from 'src/app/state';
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent implements OnInit {
-  message$: Observable<any> = new Observable()
+  message$: Observable<string> = new Observable()
 
-  constructor(private store: Store<any>) { 
+  constructor(private store: Store<AppState>) { 
     this.message$ = this.store.select(selectMessage)
   }
 

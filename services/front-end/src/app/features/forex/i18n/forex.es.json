@@ -4,6 +4,16 @@
       "title": "Divisas",
       "label": "Busca una divisa",
       "subscribe": "Suscribir"
+    },
+    "noCurrencies": "Todavía no se ha suscrito a ninguna divisa",
+    "currency": {
+      "exchange": "Tasa",
+      "high": "Máximo",
+      "low": "Mínimo",
+      "open": "Apertura",
+      "close": "Cierre",
+      "unsubscribe": "Dejar de seguir",
+      "following": "Siguiendo"
     }
   }
 }
