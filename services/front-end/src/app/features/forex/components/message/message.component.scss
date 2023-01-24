@@ -1,0 +1,9 @@
+@use "theme";
+
+.messageContainer {
+  @include theme.font-body();
+  text-align: center;
+  font-weight: 400;
+  height: 1.5rem;
+  margin: 1rem 0 0.5rem 0;
+}
