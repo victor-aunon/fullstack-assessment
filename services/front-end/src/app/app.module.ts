@@ -17,6 +17,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { routerReducer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { LayoutModule } from './common/layout/layout.module';
+import { appReducer } from "src/app/state";
+
 
 registerLocaleData(localeEs, 'es');
 registerLocaleData(localeEn, 'en');
@@ -37,6 +39,7 @@ registerLocaleData(localeEn, 'en');
     MarkdownModule.forRoot(),
     StoreModule.forRoot({
       router: routerReducer,
+      app: appReducer,
     }, {}),
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule.forRoot(),
