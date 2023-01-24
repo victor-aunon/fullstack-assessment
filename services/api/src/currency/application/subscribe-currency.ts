@@ -8,6 +8,7 @@ import {
   MongooseCurrencyRepository,
   FxFetcherRepository,
 } from "../infrastructure";
+import { CurrencyExchangeData } from "../domain/interfaces";
 
 export class SubscribeCurrency {
   private currencyRepository: ICurrencyRepository;
@@ -35,8 +36,11 @@ export class SubscribeCurrency {
     }
 
     const newCurrency = await Currency.create({ code });
-    const fxData = await this.fxFetcherRepository.getCurrencyExchangeData(code)
-    await this.currencyRepository.subscribe(newCurrency as Currency, fxData);
+    const fxData = await this.fxFetcherRepository.getCurrencyExchangeData(code);
+    await this.currencyRepository.subscribe(
+      newCurrency as Currency,
+      fxData as CurrencyExchangeData
+    );
     return await this.currencyRepository.findByCode(code);
   }
 }
