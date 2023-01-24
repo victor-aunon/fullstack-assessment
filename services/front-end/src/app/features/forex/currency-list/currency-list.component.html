@@ -1,0 +1,10 @@
+<ng-container *transloco="let t; read: 'forex.forexPage'">
+  <p *ngIf="(currencies$ | async)?.length === 0" class="noCurrenciesText">
+    {{ t("noCurrencies") }}
+  </p>
+  <ul *ngFor="let currency of currencies$ | async" class="currenciesList">
+    <li>
+      <app-currency-card [currency]="currency"></app-currency-card>
+    </li>
+  </ul>
+</ng-container>
