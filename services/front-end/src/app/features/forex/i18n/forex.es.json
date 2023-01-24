@@ -14,8 +14,8 @@
       "close": "Cierre",
       "unsubscribe": "Dejar de seguir",
       "following": "Siguiendo",
-      "bid": "Compra",
-      "ask": "Venta"
+      "bid": "Venta",
+      "ask": "Compra"
     }
   }
 }
